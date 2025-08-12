@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: cart-service
+  cloud:
+    nacos:
+      server-addr: ${hm.nacos.server-addr}
   profiles:
     active: dev
   datasource:
