@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.100.128:8848
+    gateway:
+      routes:
+       - id: item-service #item
+         uri: lb://item-service
+         predicates:
+           - Path=/items/**
+       - id: user-service #user
+         uri: lb://user-service
+         predicates:
+           - Path=/addresses/**,/users/**
+       - id: pay-service #pay
+         uri: lb://pay-service
+         predicates:
+           - Path=/pay-orders/**
+       - id: cart-service #cart
+         uri: lb://cart-service
+         predicates:
+           - Path=/carts/**
+       - id: trade-service #trade
+         uri: lb://trade-service
+         predicates:
+           - Path=//orders/**
