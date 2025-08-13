@@ -1,6 +1,6 @@
 package com.hmall.controller;
 
-import com.hmall.domain.dto.LoginFormDTO;
+import com.hmall.pay.domain.po.dto.LoginFormDTO;
 import com.hmall.domain.vo.UserLoginVO;
 import com.hmall.service.IUserService;
 import io.swagger.annotations.Api;

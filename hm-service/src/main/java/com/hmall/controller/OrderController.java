@@ -1,7 +1,7 @@
 package com.hmall.controller;
 
 import com.hmall.common.utils.BeanUtils;
-import com.hmall.domain.dto.OrderFormDTO;
+import com.hmall.pay.domain.po.dto.OrderFormDTO;
 import com.hmall.domain.vo.OrderVO;
 import com.hmall.service.IOrderService;
 import io.swagger.annotations.Api;

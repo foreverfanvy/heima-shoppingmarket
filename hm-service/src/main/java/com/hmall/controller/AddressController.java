@@ -5,7 +5,7 @@ import com.hmall.common.exception.BadRequestException;
 import com.hmall.common.utils.BeanUtils;
 import com.hmall.common.utils.CollUtils;
 import com.hmall.common.utils.UserContext;
-import com.hmall.domain.dto.AddressDTO;
+import com.hmall.pay.domain.po.dto.AddressDTO;
 import com.hmall.domain.po.Address;
 import com.hmall.service.IAddressService;
 import io.swagger.annotations.Api;
