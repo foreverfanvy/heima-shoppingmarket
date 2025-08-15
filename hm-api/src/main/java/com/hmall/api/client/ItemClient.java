@@ -15,9 +15,9 @@ import java.util.List;
 @FeignClient(name = "item-service")
 public interface ItemClient {
     @GetMapping("/items/{id}")
-    List<ItemDTO> getItemById(@RequestParam Collection<Long> id);
+    ItemDTO getItemById(@RequestParam Collection<Long> id);
     @PutMapping("/items/stock/deduct")
     void deductStock(@RequestBody List<OrderDetailDTO> items);
-    @GetMapping
+    @GetMapping("/items")
     List<ItemDTO> queryItemByIds(@RequestParam("ids") List<Long> ids);
 }

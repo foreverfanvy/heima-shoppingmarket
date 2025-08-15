@@ -17,10 +17,7 @@ import com.hmall.common.utils.UserContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -40,6 +37,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
     //private final RestTemplate restTemplate;
     //private final DiscoveryClient discoveryClient;
     private final ItemClient itemService;
+    private final ItemClient itemClient;
 
     @Override
     public void addItem2Cart(CartFormDTO cartFormDTO) {
@@ -109,7 +107,8 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
             // 服务调用失败
             return;
         }*/
-        List<ItemDTO> items = itemService.getItemById(itemIds);
+        List<Long> itemIdList = new ArrayList<>(itemIds);
+        List<ItemDTO> items = itemClient.queryItemByIds(itemIdList);
         if (CollUtils.isEmpty(items)) {
             return;
         }

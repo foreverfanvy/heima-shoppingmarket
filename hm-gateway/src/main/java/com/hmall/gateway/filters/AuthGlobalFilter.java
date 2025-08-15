@@ -4,6 +4,7 @@ import com.hmall.common.utils.CollUtils;
 import com.hmall.gateway.config.AuthProperties;
 import com.hmall.gateway.util.JwtTool;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -19,6 +20,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Component
+@Slf4j
 @RequiredArgsConstructor
 @EnableConfigurationProperties(AuthProperties.class)
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
@@ -57,9 +59,11 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             return response.setComplete();
         }
         //5.保存到请求头中，像后面的微服务进行传递
-        System.out.println("用户ID: " + userId);
+        String userInfo = userId.toString();
+        ServerWebExchange swe = exchange.mutate().request(builder -> builder.header("userId", userInfo)).build();
+        log.info("user-info: {}", userInfo);
         //6.放行
-        return chain.filter(exchange);
+        return chain.filter(swe);
     }
 
     private boolean isExclude(String path) {
