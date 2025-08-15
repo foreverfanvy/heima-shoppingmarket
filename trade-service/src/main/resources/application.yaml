@@ -2,7 +2,7 @@ server:
   port: 8088
 spring:
   application:
-    name: hm-service
+    name: trade-service
   profiles:
     active: dev
   datasource:
